@@ -1,0 +1,15 @@
+{
+  "name": "bridg-it",
+  "version": "1.0.0",
+  "description": "O Bridg-it resolvido ate o tamanho 3 e a estrategia das duas arvores: qualquer primeira ponte ganha, e a estrategia vence as 362.034 partidas possiveis do 3x3",
+  "type": "module",
+  "private": false,
+  "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "test": "node --test testes/*.test.js",
+    "medir": "node ferramentas/medidor.js"
+  }
+}
