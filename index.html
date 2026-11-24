@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bridg-it — as duas árvores</title>
+<meta name="description" content="O Bridg-it de Gale resolvido ate n = 3 e a estrategia das duas arvores: depois de qualquer primeira ponte sobram exatamente as arestas de duas arvores, e a estrategia ganha as 362.034 partidas possiveis do 3x3.">
+<link rel="stylesheet" href="css/estilo.css">
+</head>
+<body>
+
+<header>
+  <h1>Bridg-it</h1>
+  <p>Pontos vermelhos e azuis intercalados. Na sua vez você liga dois pontos vizinhos da sua cor com uma ponte, e as pontes não se cruzam. O vermelho quer atravessar da esquerda à direita; o azul, de cima a baixo.</p>
+</header>
+
+<main>
+
+<section>
+  <h2>Jogue contra a máquina</h2>
+  <div class="painel">
+    <div class="linha" style="margin-bottom:16px">
+      <select id="tamanho" aria-label="tamanho">
+        <option value="3" selected>3, busca completa</option>
+        <option value="4">4, duas árvores</option>
+        <option value="5">5, duas árvores</option>
+        <option value="6">6, duas árvores</option>
+      </select>
+      <select id="lado" aria-label="seu lado">
+        <option value="azul" selected>Eu jogo com o azul</option>
+        <option value="vermelho">Eu jogo com o vermelho (começo)</option>
+      </select>
+      <button id="reiniciar" type="button">Reiniciar</button>
+    </div>
+    <p class="fraco">O vermelho sempre começa. No tamanho 3 a máquina joga pela busca completa, dos dois lados. Do 4 em diante ela joga de vermelho pela estratégia das duas árvores, que não perde nunca.</p>
+    <div id="tabuleiro"></div>
+    <p id="estado"></p>
+  </div>
+</section>
+
+<section>
+  <h2>O que a varredura respondeu</h2>
+
+  <h3>Qualquer primeira ponte ganha</h3>
+  <p>No tamanho 3 a busca completa diz que quem começa ganha, em 9 meio-lances, e que <strong>todas as 13 aberturas ganham</strong>. As três pontes do meio fecham em 9; as outras dez, em 11. Um juiz que lê o desenho por inundação, sem nada do núcleo, concorda nas 655.984 posições.</p>
+
+  <h3>A conta que não é acaso</h3>
+  <p>Do ponto de vista do vermelho, o tabuleiro é um grafo, e a ponte azul apaga a aresta vermelha que cruza. Depois da primeira ponte sobram V vértices e exatamente 2(V − 1) arestas, o número certo para duas árvores geradoras. E em toda abertura dos tamanhos 2 a 5 as arestas que sobram se dividem mesmo em duas árvores disjuntas.</p>
+
+  <h3>A estratégia das duas árvores</h3>
+  <p>Quando o azul apaga uma aresta de uma das árvores, ela se parte em dois pedaços, e a outra árvore tem uma aresta ligando os dois. O vermelho pega essa aresta. As duas continuam sendo árvores, e quando acaba o que apagar, o vermelho atravessou. A estratégia ganha <strong>todas as 362.034 partidas possíveis</strong> do tamanho 3 (todas as aberturas, todas as respostas do azul) e as 2.000 sorteadas de cada tamanho de 4 a 6.</p>
+</section>
+
+<section>
+  <h2>Como rodar</h2>
+  <p>Precisa de Node 20 ou mais novo. Sem dependência nenhuma.</p>
+  <pre><code>npm test          # a suíte inteira
+npm run medir     # as tabelas rápidas</code></pre>
+  <p>O código está em <a href="https://github.com/condeDeveloper/bridg-it">github.com/condeDeveloper/bridg-it</a>.</p>
+</section>
+
+</main>
+
+<script type="module" src="js/app.js"></script>
+</body>
+</html>
